@@ -6,4 +6,4 @@
 
 **Ссылки**
 
-* [Ссылка на backend](https://workshop-diploma.nomoreparties.sbs).
+* [Ссылка на страницу](https://workshop-diploma.nomoreparties.sbs).
