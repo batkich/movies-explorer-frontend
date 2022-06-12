@@ -1,7 +1,6 @@
-#root{
-    margin: 0;
+#root {
+  margin: 0;
 }
 
 @import url(./vendor/normalize.css);
 @import url(./vendor/font-face.css);
-

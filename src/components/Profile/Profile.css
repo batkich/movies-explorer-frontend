@@ -1,0 +1,150 @@
+.profile {
+  margin: 0;
+  position: absolute;
+  background-color: white;
+  left: 0;
+  width: 100vw;
+  height: 626px;
+  padding-top: 74px;
+  padding-bottom: 70px;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+}
+
+.profile__title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  padding-bottom: 123px;
+}
+
+.profileform {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 410px;
+}
+
+.profileform-inputs {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.profileform-inputs__name {
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 17px;
+  border-bottom: solid 1px #e8e8e8;
+  align-items: center;
+}
+
+.profileform-inputs__email {
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 17px;
+  align-items: center;
+  padding-bottom: 220px;
+}
+
+.profileform-inputs__title {
+  margin: 0;
+  text-align: left;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  flex-basis: 20%;
+}
+
+.profileform-inputs__value {
+  margin: 0;
+  text-align: left;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  background-color: white;
+  border: 0;
+  text-align: right;
+  flex-basis: 80%;
+}
+
+.profileform-buttons {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 410px;
+  height: 48px;
+}
+
+.profileform-buttons__element {
+  margin: 0;
+  background-color: white;
+  border: 0;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.profileform-buttons__element:hover {
+  opacity: 0.7;
+}
+
+.profileform-buttons__element_type_logout {
+  color: #ff3055;
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    padding-top: 236px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile__title {
+    padding-bottom: 96px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profileform-inputs__email {
+    padding-bottom: 210px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .profileform {
+    width: 260px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .profileform-buttons {
+    width: 260px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .profile {
+    padding-top: 70px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .profile__title {
+    padding-bottom: 80px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .profileform-inputs__email {
+    padding-bottom: 379px;
+  }
+}

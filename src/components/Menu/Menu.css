@@ -1,0 +1,116 @@
+@media screen and (max-width: 768px) {
+  .menu {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 520px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background-color: white;
+  }
+}
+
+.menu_invisible {
+  display: none;
+}
+
+.menu-linkbox {
+  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+}
+
+.menu-linkbox_type_films {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  height: 123px;
+  justify-content: space-between;
+  padding-top: 159px;
+}
+
+.menu-linkbox__link {
+  margin: 0;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+}
+
+.menu-linkbox_type_profile {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 90px;
+}
+
+.menu-linkbox__link_type_akk {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 12px;
+  color: #000000;
+  border-radius: 40px;
+  box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.08);
+  width: 100px;
+  height: 32px;
+}
+
+.menu-linkbox__profile-text {
+  margin: 0;
+  padding-right: 15px;
+}
+
+.menu-linkbox__button {
+  margin: 0;
+  background-color: white;
+  border: 0;
+  transform: rotate(45deg);
+  width: 45px;
+  height: 45px;
+  font-size: 44px;
+  line-height: 44px;
+  position: absolute;
+  top: 13px;
+  right: 13px;
+}
+
+@media all and (max-width: 525px) {
+  .menu {
+    width: 320px;
+    height: 100vh;
+  }
+}
+
+@media all and (max-width: 525px) {
+  .menu-linkbox__button {
+    top: 4px;
+    right: 4px;
+  }
+}
+
+@media all and (max-width: 525px) {
+  .menu-linkbox_type_films {
+    padding-top: 140px;
+  }
+}
+
+@media all and (max-width: 525px) {
+  .menu-linkbox_type_profile {
+    padding-bottom: 142px;
+  }
+}

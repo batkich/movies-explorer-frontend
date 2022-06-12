@@ -1,13 +1,41 @@
-import './NavTab.css';
+import React from "react";
+import "./NavTab.css";
 
-function NavTab () {
-    return (
-<ul className="navtab">
-    <li className="navtab__element"><a className="navtab__element-link" href="https://github.com">О проекте</a></li>
-    <li className="navtab__element"><a className="navtab__element-link" href="https://github.com">Технологии</a></li>
-    <li className="navtab__element"><a className="navtab__element-link" href="https://github.com">Студент</a></li>
-</ul>
-);
+function NavTab(props) {
+  function scrollAnchorProject(e) {
+    e.preventDefault();
+    props.scrollProject();
+  }
+
+  function scrollAnchorTechs(e) {
+    e.preventDefault();
+    props.scrollTechs();
+  }
+
+  function scrollAnchorMe(e) {
+    e.preventDefault();
+    props.scrollMe();
+  }
+
+  return (
+    <ul className="navtab">
+      <li className="navtab__element">
+        <button className="navtab__element-link" onClick={scrollAnchorProject}>
+          О проекте
+        </button>
+      </li>
+      <li className="navtab__element">
+        <button className="navtab__element-link" onClick={scrollAnchorTechs}>
+          Технологии
+        </button>
+      </li>
+      <li className="navtab__element">
+        <button className="navtab__element-link" onClick={scrollAnchorMe}>
+          Студент
+        </button>
+      </li>
+    </ul>
+  );
 }
 
 export default NavTab;

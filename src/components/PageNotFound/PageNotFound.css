@@ -1,0 +1,82 @@
+.pagenotfound {
+  margin: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: white;
+  padding-bottom: 60px;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+}
+
+.pagenotfound-textbox {
+  margin: 0;
+  padding-top: 246px;
+  padding-bottom: 184px;
+}
+
+.pagenotfound-textbox__status {
+  font-weight: 400;
+  font-size: 140px;
+  line-height: 169px;
+  margin: 0;
+}
+
+.pagenotfound-textbox__message {
+  margin: 0;
+  padding-top: 5px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.pagenotfound__link {
+  margin: 0;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #3456f3;
+}
+
+@media screen and (max-width: 768px) {
+  .pagenotfound-textbox {
+    padding-top: 408px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pagenotfound-textbox__status {
+    font-size: 80px;
+    line-height: 97px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pagenotfound-textbox {
+    padding-top: 329px;
+    padding-bottom: 284px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pagenotfound-textbox__message {
+    font-size: 12px;
+    line-height: 15px;
+    padding-top: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pagenotfound__link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
