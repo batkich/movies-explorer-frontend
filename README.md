@@ -7,3 +7,4 @@
 **Ссылки**
 
 * [Ссылка на страницу](https://workshop-diploma.nomoreparties.sbs).
+* [Ссылка на макет](https://disk.yandex.ru/d/d_lOVivjPpiC2g).
