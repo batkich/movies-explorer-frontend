@@ -37,6 +37,22 @@
   line-height: 20px;
 }
 
+.form-box__input::-webkit-input-placeholder {
+  color: #a0a0a0;
+}
+
+.form-box__input::-moz-placeholder {
+  color: #a0a0a0;
+}
+
+.form-box__input:-moz-placeholder {
+  color: #a0a0a0;
+}
+
+.form-box__input:-ms-input-placeholder {
+  color: #a0a0a0;
+}
+
 .form-box__button {
   margin: 0;
   border: 0;

@@ -150,6 +150,7 @@
 
 @media screen and (max-width: 1130px) {
   .navigation_type_auth {
+    justify-content: space-between;
     width: 20%;
   }
 }
@@ -181,6 +182,12 @@
 @media all and (max-width: 410px) {
   .navigation_type_auth {
     width: 55%;
+  }
+}
+
+@media all and (max-width: 355px) {
+  .navigation_type_auth {
+    width: 60%;
   }
 }
 

@@ -72,6 +72,19 @@
   padding-left: 16px;
 }
 
+.moviescard-description__save-button {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  border: 0;
+}
+
+@media screen and (max-width: 1125px) {
+  .moviescard {
+    max-width: 364px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .moviescard {
     margin-bottom: 30px;

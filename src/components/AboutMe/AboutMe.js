@@ -27,12 +27,16 @@ function AboutMe(props) {
             <a
               className="aboutme-linkbox__link"
               href="https://ok.ru/profile/186608206120?utm_campaign=web_share&utm_content=profile"
+              target="_blank" 
+              rel="noreferrer"
             >
               OK
             </a>
             <a
               className="aboutme-linkbox__link"
               href="https://github.com/batkich"
+              target="_blank" 
+              rel="noreferrer"
             >
               Github
             </a>

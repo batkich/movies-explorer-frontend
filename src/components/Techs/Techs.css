@@ -127,28 +127,41 @@
 @media screen and (max-width: 720px) {
   .table-tech {
     width: 40%;
+    height: 300px;
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: space-between;
   }
 }
 
-@media screen and (max-width: 720px) {
-  .table-tech__cell {
-    width: calc(1 / 2 * 100% - (1 - 1 / 2) * 40px);
+@media screen and (max-width: 560px) {
+  .table-tech {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .table-tech {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .table-tech {
+    width: 80%;
   }
 }
 
 @media screen and (max-width: 720px) {
-  .table-tech {
-    height: 300px;
-    width: 62%;
+  .table-tech__cell {
+    max-width: 84px;
   }
 }
 
 @media all and (max-width: 320px) {
   .techs {
     padding: 70px 18px 0px 18px;
+    background-color: #FFFFFF;
   }
 }
 
@@ -191,6 +204,6 @@
 
 @media all and (max-width: 320px) {
   .table-tech__cell {
-    width: calc(1 / 2 * 100% - (1 - 1 / 2) * 10px);
+    width: 83px;
   }
 }

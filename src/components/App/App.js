@@ -19,6 +19,8 @@ function App() {
 
   const [menuOpen, setMenuOpen] = React.useState(false);
 
+  const [deleteButton, setDeleteButton] = React.useState(false);
+
   const history = useHistory();
 
   function hadleSigned() {
@@ -34,6 +36,14 @@ function App() {
     setMenuOpen(false);
   }
 
+  function handleDeleteButtonOn () {
+    setDeleteButton(true);
+  }
+
+  function handleDeleteButtonOff () {
+    setDeleteButton(false);
+  }
+
   return (
     <div className="content">
       <Header headertype={signed} handleMenu={handleMenuOpen}></Header>
@@ -42,10 +52,10 @@ function App() {
           <Main></Main>
         </Route>
         <Route path="/movies">
-          <Movies filmsArray={filmsArray}></Movies>
+          <Movies filmsArray={filmsArray} handleDeleteButton={handleDeleteButtonOff} deleteButton={deleteButton}></Movies>
         </Route>
         <Route path="/saved-movies">
-          <SavedMovies savedfilmsArray={savedfilmsArray}></SavedMovies>
+          <SavedMovies savedfilmsArray={savedfilmsArray} handleDeleteButton={handleDeleteButtonOn} deleteButton={deleteButton}></SavedMovies>
         </Route>
         <Route path="/profile">
           <Profile></Profile>

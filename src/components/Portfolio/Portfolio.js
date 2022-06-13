@@ -10,12 +10,16 @@ function Portfolio() {
           <a
             className="portfolio-list__link"
             href="https://github.com/batkich/how-to-learn"
+            target="_blank" 
+            rel="noreferrer"
           >
             Статичный сайт
           </a>
           <a
             className="portfolio-list__link"
             href="https://github.com/batkich/how-to-learn"
+            target="_blank" 
+            rel="noreferrer"
           >
             ↗
           </a>
@@ -25,12 +29,16 @@ function Portfolio() {
           <a
             className="portfolio-list__link"
             href="https://github.com/batkich/russian-travel"
+            target="_blank" 
+            rel="noreferrer"
           >
             Адаптивный сайт
           </a>
           <a
             className="portfolio-list__link"
             href="https://github.com/batkich/russian-travel"
+            target="_blank" 
+            rel="noreferrer"
           >
             ↗
           </a>
@@ -40,12 +48,16 @@ function Portfolio() {
           <a
             className="portfolio-list__link"
             href="https://github.com/batkich/react-mesto-api-full"
+            target="_blank" 
+            rel="noreferrer"
           >
             Одностраничное приложение
           </a>
           <a
             className="portfolio-list__link"
             href="https://github.com/batkich/react-mesto-api-full"
+            target="_blank" 
+            rel="noreferrer"
           >
             ↗
           </a>
