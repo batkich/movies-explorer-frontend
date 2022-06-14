@@ -1,1 +1,10 @@
-# movies-explorer-frontend
+# Дипломная работа студента ЯндексПрактикума
+
+**О проекте**
+
+Реализован 2 этап дипломной работы (вёрстка).
+
+**Ссылки**
+
+* [Ссылка на страницу](https://workshop-diploma.nomoreparties.sbs).
+* [Ссылка на макет](https://disk.yandex.ru/d/d_lOVivjPpiC2g).

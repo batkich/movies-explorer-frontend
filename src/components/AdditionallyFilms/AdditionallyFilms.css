@@ -1,0 +1,52 @@
+.additionallyfilms {
+  margin: 0 auto;
+  padding: 13px 70px 80px 70px;
+  max-width: 1280px;
+  border-right: solid 1px black;
+  border-left: solid 1px black;
+  display: flex;
+  justify-content: center;
+}
+
+.additionallyfilms__button {
+  margin: 0;
+  padding: 0;
+  width: 320px;
+  height: 36px;
+  background-color: white;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  border: 1.5px solid #E8E8E8;
+  border-radius: 8px;
+}
+
+.additionallyfilms__button:hover {
+  opacity: 0.7;
+}
+
+@media all and (max-width: 400px) {
+  .additionallyfilms__button {
+    width: 240px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .additionallyfilms {
+    border: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .additionallyfilms {
+    padding-top: 20px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .additionallyfilms {
+    padding-top: 36px;
+  }
+}
