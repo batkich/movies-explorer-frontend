@@ -13,18 +13,26 @@ function Menu(props) {
         <button className="menu-linkbox__button" onClick={closeMenu}>
           +
         </button>
-        <Link to="/" className="menu-linkbox__link">
+        <Link to="/" className="menu-linkbox__link" onClick={closeMenu}>
           Главная
         </Link>
-        <Link to="/movies" className="menu-linkbox__link">
+        <Link to="/movies" className="menu-linkbox__link" onClick={closeMenu}>
           Фильмы
         </Link>
-        <Link to="/" className="menu-linkbox__link">
+        <Link
+          to="/saved-movies"
+          className="menu-linkbox__link"
+          onClick={closeMenu}
+        >
           Сохранённые фильмы
         </Link>
       </div>
       <div className="menu-linkbox menu-linkbox_type_profile">
-        <Link to="/" className="menu-linkbox__link menu-linkbox__link_type_akk">
+        <Link
+          to="/profile"
+          className="menu-linkbox__link menu-linkbox__link_type_akk"
+          onClick={closeMenu}
+        >
           <p className="menu-linkbox__profile-text">Аккаунт</p>
           <img
             src={icon}

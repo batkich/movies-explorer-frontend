@@ -4,18 +4,20 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 
 function SavedMovies(props) {
-
   React.useEffect(() => {
     props.handleDeleteButton();
   });
-  
+
+  function handleSearch(array) {
+    props.handleSearchSaved(array);
+  }
 
   return (
     <div className="savedmovies">
-      <SearchForm></SearchForm>
+      <SearchForm searchSaved={handleSearch}></SearchForm>
       <MoviesCardList
-        films={props.savedfilmsArray}
-        deleteButton={props.deleteButton}
+        films={props.savedFilmsArray}
+        deleteButton={props.handleDeleteFilm}
       ></MoviesCardList>
     </div>
   );
