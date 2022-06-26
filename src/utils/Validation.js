@@ -17,7 +17,6 @@ export const setEventListeners = (selectedform, buttonElement, inactiveButtonCla
       inputList.forEach((item) => {
         item.addEventListener("input", () => {
           isValid(selectedform, item, inputErrorClass, errorClass);
-          console.log(item)
           toogleSaveButton(buttonElement, inactiveButtonClass, inputList);
         });
       });

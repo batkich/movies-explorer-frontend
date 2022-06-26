@@ -42,7 +42,7 @@ function SearchForm(props) {
     }
     const filteredFilms = arrayToFilter.map((film) => {
       let filterfilm;
-      if (film.nameRU.includes(searchValue)) {
+      if (film.nameRU.toLowerCase().includes(searchValue.toLowerCase())) {
         return (filterfilm = film);
       }
 
@@ -68,6 +68,7 @@ function SearchForm(props) {
 
   function toSearchSaved(e) {
     e.preventDefault();
+    props.handlePreloaderVisibility();
     const savedFilms = JSON.parse(localStorage.getItem("savedFilms"));
     toFilterFilms(savedFilms);
     props.searchSaved(newFilmArray);

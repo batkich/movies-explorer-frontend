@@ -3,13 +3,14 @@ import "./Profile.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import * as Validation from "../../utils/Validation";
 import * as profileSetting from "../../utils/constants";
+import * as emailRegEx from "../../utils/RegEx";
 
 function Profile(props) {
   const currentUser = React.useContext(CurrentUserContext);
 
-  const [email, setEmail] = React.useState("");
+  const [email, setEmail] = React.useState('');
 
-  const [name, setName] = React.useState("");
+  const [name, setName] = React.useState('');
 
   const profileForm = document.querySelector(".profileform");
   const submitButton = document.querySelector(".profileform-buttons__element");
@@ -23,6 +24,15 @@ function Profile(props) {
       }
     }
   });
+
+  React.useEffect(() => {
+    const emailInput = document.querySelector('#profile-email');
+    const nameInput = document.querySelector('#profile-name');
+    setEmail(currentUser.email);
+    setName(currentUser.name);
+    emailInput.value=currentUser.email;
+    nameInput.value=currentUser.name;
+  },[props.profilePageOpen, currentUser]);
 
   function toEdit(e) {
     e.preventDefault();
@@ -62,6 +72,7 @@ function Profile(props) {
             <span className="profileform-inputs__title">Email</span>
             <input
               type="email"
+              pattern={emailRegEx.emailRegEx}
               id="profile-email"
               className="profileform-inputs__value"
               onChange={handleSetEmail}
@@ -72,7 +83,7 @@ function Profile(props) {
         </div>
         <div className="profileform-buttons">
           <span className="profileform-submit__error">
-            {props.errorMessage}
+          {props.updProfile ? "Данные профиля сохранены" : props.errorMessage}
           </span>
           <button
             type="submit"

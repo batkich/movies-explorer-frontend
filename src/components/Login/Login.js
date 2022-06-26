@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
 import * as Validation from "../../utils/Validation";
 import * as loginSetting from "../../utils/constants";
+import * as emailRegEx from "../../utils/RegEx";
 
 function Login(props) {
   const [email, setEmail] = React.useState("");
@@ -55,6 +56,7 @@ function Login(props) {
             className="loginform-inputs__value"
             id="login-email"
             type="email"
+            pattern={emailRegEx.emailRegEx}
             onChange={handleSetEmail}
             required
           ></input>

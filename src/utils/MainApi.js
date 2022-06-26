@@ -17,6 +17,13 @@ export const register = (email, password, name) => {
       } catch (e) {
         return (e)
       }
+      try {
+        if (response.status === 409) {
+          return response.statusText;
+        }
+      } catch (e) {
+        return (e)
+      }
     })
     .then((res) => {
       return res;

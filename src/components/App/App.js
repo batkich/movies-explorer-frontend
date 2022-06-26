@@ -38,6 +38,10 @@ function App() {
 
   const [locationMovies, setLocationMovies] = React.useState(false);
 
+  const [updProfile, setUpdProfile] = React.useState(false);
+
+  const [profilePageOpen, setProfilePageOpen] = React.useState(false);
+
   const [errorMessage, setErrorMessage] = React.useState("");
 
   const history = useHistory();
@@ -70,6 +74,11 @@ function App() {
     setAddButtonVisible(value);
   }
 
+  function handlePreloaderVisibility () {
+    setElementVisible(true);
+    setTimeout(setElementVisible, 1000, false);
+  }
+
   React.useEffect(() => {
     tokenCheck();
     setAddButtonVisible(false);
@@ -79,6 +88,9 @@ function App() {
     }
     if (history.location.pathname === "/movies") {
       setLocationMovies(true);
+    }
+    if (history.location.pathname === "/profile") {
+      setProfilePageOpen(true);
     }
   }, [history.location]);
 
@@ -133,17 +145,20 @@ function App() {
         console.log(`Ошибка: ${err}`);
       })
       .finally(() => {
-        setElementVisible(false);
-        handleAddButton(value);
+        setTimeout(setElementVisible, 1000, false);
+        setTimeout(handleAddButton, 1000, value);
       });
   }
 
   function handleRegister(email, password, name) {
     MainApi.register(email, password, name)
       .then((res, err) => {
-        handleLogin(email, password);
         if (res === undefined) {
           setErrorMessage("Что-то пошло не так");
+        } else if (res === "Conflict") {
+          setErrorMessage("Указанный Email уже используется");
+        } else {
+          handleLogin(email, password);
         }
       })
       .catch((err) => {
@@ -177,11 +192,17 @@ function App() {
 
   function handleUpdateUser(data) {
     const token = localStorage.getItem("token");
+    setUpdProfile(false);
     MainApi.setProfileInfo(token, data)
       .then((res) => {
-        setCurrentUser(res);
-        if (res === undefined) {
+
+       if(res === undefined) {
+        setErrorMessage("Что-то пошло не так");
+        } else if (res.statusCode === 400) {
           setErrorMessage("Что-то пошло не так");
+        } else {
+          setCurrentUser(res);
+          setUpdProfile(true);
         }
       })
       .catch((err) => {
@@ -344,6 +365,8 @@ function App() {
             savedFilmsArray={savedFilmsArray}
             handleDeleteFilm={handleDeleteFilm}
             handleSearchSaved={handleSearchSaved}
+            handlePreloaderVisibility={handlePreloaderVisibility}
+            elementVisible={elementVisible}
           ></ProtectedRoute>
           <ProtectedRoute
             path="/profile"
@@ -351,7 +374,9 @@ function App() {
             component={Profile}
             updateUser={handleUpdateUser}
             logOut={logOut}
+            updProfile={updProfile}
             errorMessage={errorMessage}
+            profilePageOpen={profilePageOpen}
           ></ProtectedRoute>
           <Route path="/signin">
             <Login

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
 import * as Validation from "../../utils/Validation";
 import * as registerSetting from "../../utils/constants";
+import * as emailRegEx from "../../utils/RegEx";
 
 function Register(props) {
   const [name, setName] = React.useState("");
@@ -73,6 +74,7 @@ function Register(props) {
           <span className="registerform-inputs__title">Email</span>
           <input
             type="email"
+            pattern={emailRegEx.emailRegEx}
             id="register-input_email"
             onChange={handleSetEmail}
             className="registerform-inputs__value"
