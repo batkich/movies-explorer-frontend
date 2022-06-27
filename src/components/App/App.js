@@ -94,21 +94,6 @@ function App() {
     }
   }, [history.location]);
 
-  React.useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      MainApi.getAllMovies(token)
-        .then((res) => {
-          if (res) {
-            toCorrectArray(res);
-          }
-        })
-        .catch((err) => {
-          console.log(`Ошибка: ${err}`);
-        });
-    }
-  }, [signed]);
-
   function tokenCheck() {
     const token = localStorage.getItem("token");
     if (token) {
@@ -145,12 +130,14 @@ function App() {
     MainApi.authorize(email, password)
       .then((res) => {
         if (res) {
-          MainApi.getInfo(res)
-            .then((data) => {
+          Promise.all([MainApi.getInfo(res), MainApi.getAllMovies(res)])
+            .then(([userInfo, films]) => {
               setSigned(true);
+              localStorage.setItem("filmId", JSON.stringify(1));
               localStorage.setItem("sign", signed);
               history.push("/movies");
-              setCurrentUser(data);
+              setCurrentUser(userInfo);
+              toCorrectArray(films);
             })
             .catch((err) => {
               console.log(`Ошибка: ${err}`);
@@ -194,26 +181,15 @@ function App() {
   }
 
   function handleUpdateUser(data) {
-    const token = localStorage.getItem("token");
     setUpdProfile(false);
-    MainApi.setProfileInfo(token, data)
-      .then((res) => {
-        if (res === undefined) {
-          setErrorMessage("Что-то пошло не так");
-        } else if (res.statusCode === 400) {
-          setErrorMessage("Что-то пошло не так");
-        } else {
-          setCurrentUser(res);
-          setUpdProfile(true);
-        }
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
-      });
+    setCurrentUser(data);
+    setUpdProfile(true);
   }
 
   function handleSaveMovie(data) {
-    const token = localStorage.getItem("token");
+    const filmId = localStorage.getItem("filmId");
+    const newFilmId = Number(filmId) + 1;
+    const savedFilms = JSON.parse(localStorage.getItem("savedFilms"));
     const {
       country,
       director,
@@ -223,31 +199,32 @@ function App() {
       image,
       trailerLink,
       thumbnail,
+      owner,
       movieId,
       nameRU,
       nameEN,
     } = data;
-    MainApi.saveMovie(
-      token,
+    const newData = {
+      id: newFilmId,
       country,
       director,
       duration,
       year,
       description,
-      image,
+      image: {
+        url: image,
+      },
       trailerLink,
       thumbnail,
+      owner,
       movieId,
       nameRU,
-      nameEN
-    )
-      .then(() => {
-        getSavedFilms();
-        handleRender();
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
-      });
+      nameEN,
+    };
+    savedFilms.push(newData);
+    localStorage.setItem("savedFilms", JSON.stringify(savedFilms));
+    setSavedFilmsArray(savedFilms);
+    localStorage.setItem("filmId", JSON.stringify(newFilmId));
   }
 
   function toCorrectArray(array) {
@@ -296,36 +273,95 @@ function App() {
   }
 
   function getSavedFilms() {
+    const savedFilms = JSON.parse(localStorage.getItem("savedFilms"));
+    addSaveFilmsToStorage(savedFilms);
+    setSavedFilmsArray(savedFilms);
+  }
+
+  function handleDeleteFilm(id) {
+    const savedFilms = JSON.parse(localStorage.getItem("savedFilms"));
+    const savedFilmsWithoutDelete = savedFilms.filter((item) => item.id !== id);
+    localStorage.setItem("savedFilms", JSON.stringify(savedFilmsWithoutDelete));
+    setSavedFilmsArray(savedFilmsWithoutDelete);
+  }
+
+  function logOut() {
     const token = localStorage.getItem("token");
     MainApi.getAllMovies(token)
       .then((res) => {
         if (res) {
-          toCorrectArray(res);
+          res.forEach((item) => {
+            if (item !== null) {
+              MainApi.deleteMovie(token, item._id).catch((err) => {
+                console.log(`Ошибка: ${err}`);
+              });
+            }
+          });
         }
+      })
+      .then(() => {
+        const filmsToSave = JSON.parse(localStorage.getItem("savedFilms"));
+        filmsToSave.forEach((item) => {
+          const {
+            country,
+            director,
+            duration,
+            year,
+            description,
+            image,
+            trailerLink,
+            thumbnail,
+            movieId,
+            nameRU,
+            nameEN,
+          } = item;
+          MainApi.saveMovie(
+            token,
+            country,
+            director,
+            duration,
+            year,
+            description,
+            image.url,
+            trailerLink,
+            thumbnail,
+            movieId,
+            nameRU,
+            nameEN
+          ).catch((err) => {
+            console.log(`Ошибка: ${err}`);
+          });
+        });
+      })
+      .then(() => {
+        const userInfo = {
+          name: currentUser.name,
+          email: currentUser.email,
+        };
+        MainApi.setProfileInfo(token, userInfo)
+          .then((res) => {
+            if (res === undefined) {
+              setErrorMessage("Что-то пошло не так");
+            } else if (res.statusCode === 400) {
+              setErrorMessage("Что-то пошло не так");
+            } else {
+              setCurrentUser(res);
+              setUpdProfile(true);
+            }
+          })
+          .catch((err) => {
+            console.log(`Ошибка: ${err}`);
+          });
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
-      });
-  }
-
-  function handleDeleteFilm(_id) {
-    const token = localStorage.getItem("token");
-    MainApi.deleteMovie(token, _id)
-      .then((res) => {
-        if (res) {
-          getSavedFilms();
-        }
       })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
+      .finally(() => {
+        localStorage.removeItem("token");
+        setSigned(false);
+        window.localStorage.clear();
+        history.push("/");
       });
-  }
-
-  function logOut() {
-    localStorage.removeItem("token");
-    setSigned(false);
-    window.localStorage.clear();
-    history.push("/");
   }
 
   function handleSearchSaved(array) {
