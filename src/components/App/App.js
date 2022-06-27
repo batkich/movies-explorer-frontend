@@ -74,7 +74,7 @@ function App() {
     setAddButtonVisible(value);
   }
 
-  function handlePreloaderVisibility () {
+  function handlePreloaderVisibility() {
     setElementVisible(true);
     setTimeout(setElementVisible, 1000, false);
   }
@@ -97,20 +97,17 @@ function App() {
   React.useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      MoviesApi.getMovies()
+      MainApi.getAllMovies(token)
         .then((res) => {
           if (res) {
-            let arrayJSON = JSON.stringify(res);
-            localStorage.setItem("filmsArray", arrayJSON);
-          } else {
-            return Constants.errorBeatfilmsMessage;
+            toCorrectArray(res);
           }
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
         });
     }
-  });
+  }, [signed]);
 
   function tokenCheck() {
     const token = localStorage.getItem("token");
@@ -129,9 +126,7 @@ function App() {
     }
   }
 
-  function searchMovies(value) {
-    setElementVisible(true);
-    handleAddButton(false);
+  function handleGetMovies() {
     MoviesApi.getMovies()
       .then((res) => {
         if (res) {
@@ -143,30 +138,10 @@ function App() {
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
-      })
-      .finally(() => {
-        setTimeout(setElementVisible, 1000, false);
-        setTimeout(handleAddButton, 1000, value);
       });
   }
 
-  function handleRegister(email, password, name) {
-    MainApi.register(email, password, name)
-      .then((res, err) => {
-        if (res === undefined) {
-          setErrorMessage("Что-то пошло не так");
-        } else if (res === "Conflict") {
-          setErrorMessage("Указанный Email уже используется");
-        } else {
-          handleLogin(email, password);
-        }
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
-      });
-  }
-
-  function handleLogin(email, password) {
+  function handleAuthorize(email, password) {
     MainApi.authorize(email, password)
       .then((res) => {
         if (res) {
@@ -190,14 +165,41 @@ function App() {
       });
   }
 
+  function searchMovies(value) {
+    setElementVisible(true);
+    handleAddButton(false);
+    setTimeout(setElementVisible, 1000, false);
+    setTimeout(handleAddButton, 1000, value);
+  }
+
+  function handleRegister(email, password, name) {
+    MainApi.register(email, password, name)
+      .then((res, err) => {
+        if (res === undefined) {
+          setErrorMessage("Что-то пошло не так");
+        } else if (res === "Conflict") {
+          setErrorMessage("Указанный Email уже используется");
+        } else {
+          handleLogin(email, password);
+        }
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      });
+  }
+
+  function handleLogin(email, password) {
+    handleGetMovies();
+    handleAuthorize(email, password);
+  }
+
   function handleUpdateUser(data) {
     const token = localStorage.getItem("token");
     setUpdProfile(false);
     MainApi.setProfileInfo(token, data)
       .then((res) => {
-
-       if(res === undefined) {
-        setErrorMessage("Что-то пошло не так");
+        if (res === undefined) {
+          setErrorMessage("Что-то пошло не так");
         } else if (res.statusCode === 400) {
           setErrorMessage("Что-то пошло не так");
         } else {

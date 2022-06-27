@@ -29,7 +29,7 @@ function MoviesCard(props) {
   }
 
   function correctArrayKey(item) {
-    if (item === null) {
+    if (item === null || item === "") {
       return (item = "Unknown");
     }
     return item;
