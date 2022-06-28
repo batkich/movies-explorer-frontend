@@ -99,5 +99,12 @@
 @media screen and (max-width: 1280px) {
   .preloader {
     border: none;
+    width: 300px;
+  }
+}
+
+@media all and (max-width: 450px) {
+  .preloader {
+    width: 150px;
   }
 }

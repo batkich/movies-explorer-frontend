@@ -154,6 +154,22 @@
   opacity: 0.7;
 }
 
+.registerform-submit__button_disabled {
+  opacity: 0.3;
+}
+
+.registerform-submit__error {
+  margin: 0;
+  width: 100%;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  color: #ff3055;
+  height: 20px;
+  text-align: left;
+  margin-top: -25px;
+}
+
 @media screen and (max-width: 768px) {
   .register {
     padding-top: 232px;

@@ -2,5 +2,9 @@
   margin: 0;
 }
 
+:root {
+  --rows: 4;
+}
+
 @import url(./vendor/normalize.css);
 @import url(./vendor/font-face.css);

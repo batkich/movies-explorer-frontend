@@ -1,13 +1,26 @@
+import React from "react";
 import "./AdditionallyFilms.css";
 
-function AdditionallyFilms() {
+function AdditionallyFilms(props) {
+  const [visibility, setVisibility] = React.useState(false);
+
+  React.useEffect(() => {
+    setVisibility(props.visibility);
+  }, [props.visibility]);
+
   function toShowElse(e) {
     e.preventDefault();
-    console.log("Else");
+    props.addFilms();
   }
 
   return (
-    <div className="additionallyfilms">
+    <div
+      className={
+        visibility
+          ? "additionallyfilms additionallyfilms_type_on"
+          : " additionallyfilms"
+      }
+    >
       <button className="additionallyfilms__button" onClick={toShowElse}>
         Ещё
       </button>
